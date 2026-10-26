@@ -1,0 +1,19 @@
+# Plum-blossom difficulty sweep for a focused Go2W plum checkpoint.
+name: plum
+duration: 20.0
+repeats: 1
+seed: 42
+command: [0.28, 0.0, 0.0]
+cases:
+  - obstacle: {type: plum, difficulty: 0.0}
+    label: plum_row0
+  - obstacle: {type: plum, difficulty: 0.2}
+    label: plum_easy
+  - obstacle: {type: plum, difficulty: 0.4}
+    label: plum_medium
+  - obstacle: {type: plum, difficulty: 0.6}
+    label: plum_hard
+  - obstacle: {type: plum, difficulty: 0.8}
+    label: plum_harder
+  - obstacle: {type: plum, difficulty: 1.0}
+    label: plum_max

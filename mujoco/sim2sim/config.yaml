@@ -1,0 +1,76 @@
+# MuJoCo validation configuration. Paths are relative to this file unless absolute.
+robot_xml: ../mjlab/go2w/go2w_description.xml
+course_xml: ../../../ROBOCON2027.xml
+
+physics_dt: 0.002
+control_decimation: 10
+action_scale: 0.25
+action_clip: 5.0
+actuator_kp: 25.0
+actuator_kv: 0.5
+velocity_actuator_kv: 0.15
+actuator_effort: 23.5
+
+default_angles: [0.0, 0.8, -1.5, 0.0, 0.8, -1.5,
+                  0.0, 0.8, -1.5, 0.0, 0.8, -1.5,
+                  0.0, 0.0, 0.0, 0.0]
+lin_vel_scale: 1.0
+ang_vel_scale: 0.25
+dof_pos_scale: 1.0
+dof_vel_scale: 0.05
+command_scale: [1.0, 1.0, 1.0]
+
+joint_names: [FR_hip_joint, FR_thigh_joint, FR_calf_joint,
+              FL_hip_joint, FL_thigh_joint, FL_calf_joint,
+              RR_hip_joint, RR_thigh_joint, RR_calf_joint,
+              RL_hip_joint, RL_thigh_joint, RL_calf_joint,
+              FR_foot_joint, FL_foot_joint, RR_foot_joint, RL_foot_joint]
+position_joint_names: [FR_hip_joint, FR_thigh_joint, FR_calf_joint,
+                       FL_hip_joint, FL_thigh_joint, FL_calf_joint,
+                       RR_hip_joint, RR_thigh_joint, RR_calf_joint,
+                       RL_hip_joint, RL_thigh_joint, RL_calf_joint]
+velocity_joint_names: [FR_foot_joint, FL_foot_joint, RR_foot_joint, RL_foot_joint]
+position_actuator_suffix: _position
+velocity_actuator_suffix: _velocity
+base_body_name: base
+foot_body_names: [FR_foot, FL_foot, RR_foot, RL_foot]
+position_action_scale: 0.25
+velocity_action_scale: 8.0
+history_length: 6
+observation_term_dims: [3, 3, 3, 2, 16, 16, 16]
+scan_dim: 403
+scan_resolution: 0.08
+# Leave empty to select the training-compatible grid from the checkpoint
+# (216 values -> 1.4 x 0.9 m, 403 values -> 2.4 x 1.0 m).
+scan_size: null
+# The full scan is still fed to the actor. A stride of 2 reduces expensive
+# MuJoCo ray queries on the large ROBOCON mesh; set to 1 for exact scanning.
+scan_stride: 2
+scan_update_interval: 2
+
+command: [0.25, 0.0, 0.0]
+spawn: [0.0, 0.0, 0.45, 0.0]
+duration: 10.0
+max_command: [1.0, 1.0, 1.0]
+
+# Reset-time sim2sim domain randomization. The ranges are multiplicative
+# around the XML values and are deliberately moderate for the first transfer
+# pass; widen them after the nominal course remains stable.
+randomization:
+  enabled: true
+  seed: 42
+  ground_friction_range: [0.75, 1.25]
+  wheel_friction_range: [0.70, 1.30]
+  joint_damping_scale_range: [0.85, 1.15]
+  joint_friction_scale_range: [0.80, 1.20]
+  actuator_gain_scale_range: [0.90, 1.10]
+  mass_scale_range: [0.95, 1.05]
+  com_offset_range: 0.015
+  motor_response_range: [0.75, 1.0]
+  action_delay_steps_range: [0, 2]
+  control_decimation_jitter: 1
+  imu_noise_std: 0.015
+  joint_pos_noise_std: 0.003
+  joint_vel_noise_std: 0.03
+  scan_noise_std: 0.015
+  scan_dropout_prob: 0.02

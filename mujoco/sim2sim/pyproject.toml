@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dogsim"
+version = "2.0.0"
+description = "Modular MuJoCo sim2sim evaluator for HighTorque MiniDog / Go2W"
+requires-python = ">=3.10"
+dependencies = [
+  "mujoco>=3.0",
+  "numpy>=1.24",
+  "PyYAML>=6.0",
+  "torch>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+include = ["dogsim*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

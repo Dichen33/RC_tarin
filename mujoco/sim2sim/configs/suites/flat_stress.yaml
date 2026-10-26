@@ -1,0 +1,27 @@
+# Flat-ground robustness: five randomized hardware instances.
+name: flat_stress
+duration: 15.0
+repeats: 5
+seed: 100
+command: [0.25, 0.0, 0.0]
+randomization:
+  enabled: true
+  seed: 100
+  ground_friction_range: [0.65, 1.35]
+  wheel_friction_range: [0.60, 1.40]
+  joint_damping_scale_range: [0.80, 1.20]
+  joint_friction_scale_range: [0.70, 1.30]
+  actuator_gain_scale_range: [0.85, 1.15]
+  mass_scale_range: [0.92, 1.08]
+  com_offset_range: 0.02
+  motor_response_range: [0.70, 1.0]
+  action_delay_steps_range: [0, 2]
+  control_decimation_jitter: 1
+  imu_noise_std: 0.02
+  joint_pos_noise_std: 0.005
+  joint_vel_noise_std: 0.05
+  scan_noise_std: 0.03
+  scan_dropout_prob: 0.04
+cases:
+  - obstacle: {type: flat, difficulty: 0.0}
+    label: flat_randomized

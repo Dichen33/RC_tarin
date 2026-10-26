@@ -1,0 +1,8 @@
+.venv/
+.cache/
+model/
+logs/
+__pycache__/
+*.py[cod]
+MUJOCO_LOG.TXT
+*.egg-info/

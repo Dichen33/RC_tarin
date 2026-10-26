@@ -1,0 +1,47 @@
+# HighTorque MiniDog (12-DoF leg) sim2sim configuration.
+robot:
+  profile: minidog
+  xml: ../../HighTorque-MiniDog/mujoco/htdw_4438/htdw_4438.xml
+
+policy:
+  # Pass --checkpoint on the command line; this keeps the file portable.
+  checkpoint: null
+  device: cpu
+  architecture: auto
+  map_shape: [31, 13]
+  residual_scale: 0.0
+
+simulation:
+  physics_dt: 0.002
+  control_decimation: 10
+  duration: 20.0
+  integrator: implicitfast
+  cone: elliptic
+  impratio: 100.0
+  scan:
+    enabled: true
+    update_hz: 10.0
+    noise_std: 0.03
+    dropout_prob: 0.04
+    stride: 1
+  randomization:
+    enabled: false
+    seed: 42
+
+obstacle:
+  type: flat
+  difficulty: 0.0
+
+command: [0.25, 0.0, 0.0]
+max_command: [1.0, 1.0, 1.0]
+
+evaluation:
+  kind: auto
+  stable_steps: 5
+  max_tilt: 0.70
+  min_height: 0.14
+
+output:
+  results_dir: ../results
+  scene_xml: ../generated/minidog_scene.xml
+  save_failed_trace: true

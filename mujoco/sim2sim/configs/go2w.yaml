@@ -1,0 +1,91 @@
+# Go2W sim2sim configuration.
+# Paths are resolved relative to this file first, then the project root.
+robot:
+  profile: go2w
+  xml: ../../HighTorque-MiniDog/mujoco/mjlab/go2w/go2w_description.xml
+
+policy:
+  checkpoint: ../../model_199.pt
+  device: cpu
+  architecture: auto
+  # Training contract for Robot-Go2W-Mixed-v0.  The loader verifies the
+  # convolution input channels and the actor shapes against the checkpoint.
+  map_shape: [31, 13]
+  residual_scale: 0.40
+  action_smoothing: 0.45
+  action_rate_limit: 0.35
+  action_absolute_limit: 4.0
+  router_temperature: 1.0
+
+simulation:
+  physics_dt: 0.002
+  control_decimation: 10
+  duration: 20.0
+  integrator: implicitfast
+  cone: elliptic
+  impratio: 100.0
+  solver: newton
+  iterations: 100
+  tolerance: 1.0e-8
+  ls_iterations: 50
+  ls_tolerance: 0.01
+  ccd_iterations: 50
+  scan:
+    enabled: true
+    update_hz: 10.0
+    noise_std: 0.03
+    dropout_prob: 0.04
+    stride: 1
+    max_distance: 3.0
+    clip_min: -1.0
+    clip_max: 1.0
+  randomization:
+    enabled: false
+    seed: 42
+    ground_friction_range: [0.75, 1.25]
+    wheel_friction_range: [0.70, 1.30]
+    joint_damping_scale_range: [0.85, 1.15]
+    joint_friction_scale_range: [0.80, 1.20]
+    actuator_gain_scale_range: [0.90, 1.10]
+    mass_scale_range: [0.95, 1.05]
+    com_offset_range: 0.015
+    motor_response_range: [0.75, 1.0]
+    action_delay_steps_range: [0, 2]
+    control_decimation_jitter: 1
+    imu_noise_std: 0.015
+    joint_pos_noise_std: 0.003
+    joint_vel_noise_std: 0.03
+    scan_noise_std: 0.015
+    scan_dropout_prob: 0.02
+
+obstacle:
+  type: flat
+  difficulty: 0.0
+  origin: [0.0, 0.0, 0.0]
+  yaw: 0.0
+  params: {}
+
+command: [0.25, 0.0, 0.0]
+max_command: [1.0, 1.0, 1.0]
+
+evaluation:
+  kind: auto
+  success_distance: null
+  stable_steps: 5
+  max_tilt: 0.70
+  min_height: 0.14
+  min_forward_velocity: 0.02
+  max_vertical_velocity: 0.75
+  command_threshold: 0.05
+  stop_on_fall: true
+  require_support: true
+  plum_require_all_stones: false
+  plum_block_hold_steps: 2
+  stair_reach_tolerance: 0.10
+
+output:
+  results_dir: ../results
+  scene_xml: ../generated/scene.xml
+  save_trace: false
+  save_failed_trace: true
+  trace_every: 10

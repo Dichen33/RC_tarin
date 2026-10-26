@@ -1,0 +1,20 @@
+# Curriculum row 0: the easiest generated variant of every obstacle family.
+# This answers "can the checkpoint do the skill at all", independent of height.
+name: easiest
+duration: 15.0
+repeats: 1
+seed: 42
+command: [0.25, 0.0, 0.0]
+cases:
+  - obstacle: {type: flat, difficulty: 0.0}
+    label: flat
+  - obstacle: {type: rough, difficulty: 0.0}
+    label: rough_row0
+  - obstacle: {type: plum, difficulty: 0.0}
+    label: plum_row0
+  - obstacle: {type: high_wall, difficulty: 0.0}
+    label: wall_row0
+  - obstacle: {type: gap, difficulty: 0.0}
+    label: gap_row0
+  - obstacle: {type: stairs, difficulty: 0.0}
+    label: stairs_row0

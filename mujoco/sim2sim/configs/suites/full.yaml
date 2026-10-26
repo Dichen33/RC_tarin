@@ -1,0 +1,56 @@
+# Full difficulty sweep.  Difficulty 0 is the training curriculum's easiest
+# row and 1.0 is its hardest row (for high walls the curriculum starts at 0.1).
+name: full
+duration: 20.0
+repeats: 1
+seed: 42
+command: [0.25, 0.0, 0.0]
+cases:
+  - obstacle: {type: flat, difficulty: 0.0}
+    label: flat
+  - obstacle: {type: rough, difficulty: 0.25}
+    label: rough_easy
+  - obstacle: {type: rough, difficulty: 0.50}
+    label: rough_medium
+  - obstacle: {type: rough, difficulty: 0.75}
+    label: rough_hard
+  - obstacle: {type: rough, difficulty: 1.0}
+    label: rough_max
+  - obstacle: {type: plum, difficulty: 0.20}
+    label: plum_easy
+  - obstacle: {type: plum, difficulty: 0.40}
+    label: plum_medium
+  - obstacle: {type: plum, difficulty: 0.60}
+    label: plum_hard
+  - obstacle: {type: plum, difficulty: 0.80}
+    label: plum_harder
+  - obstacle: {type: plum, difficulty: 1.0}
+    label: plum_max
+  - obstacle: {type: high_wall, difficulty: 0.25}
+    label: wall_easy
+  - obstacle: {type: high_wall, difficulty: 0.50}
+    label: wall_medium
+  - obstacle: {type: high_wall, difficulty: 0.75}
+    label: wall_hard
+  - obstacle: {type: high_wall, difficulty: 1.0}
+    label: wall_max
+  - obstacle: {type: gap, difficulty: 0.20}
+    label: gap_easy
+  - obstacle: {type: gap, difficulty: 0.40}
+    label: gap_medium
+  - obstacle: {type: gap, difficulty: 0.60}
+    label: gap_hard
+  - obstacle: {type: gap, difficulty: 0.80}
+    label: gap_harder
+  - obstacle: {type: gap, difficulty: 1.0}
+    label: gap_max
+  - obstacle: {type: stairs, difficulty: 0.20}
+    label: stairs_easy
+  - obstacle: {type: stairs, difficulty: 0.40}
+    label: stairs_medium
+  - obstacle: {type: stairs, difficulty: 0.60}
+    label: stairs_hard
+  - obstacle: {type: stairs, difficulty: 0.80}
+    label: stairs_harder
+  - obstacle: {type: stairs, difficulty: 1.0}
+    label: stairs_max

@@ -1,0 +1,55 @@
+# Integrated ROBOCON course compatibility mode.
+# The five focused obstacle bricks remain the recommended evaluation path;
+# this mode reproduces the supplied end-to-end map for visual checks.
+robot:
+  profile: go2w
+  xml: ../../HighTorque-MiniDog/mujoco/mjlab/go2w/go2w_description.xml
+
+policy:
+  checkpoint: ../../model_199.pt
+  device: cpu
+  architecture: auto
+  map_shape: [31, 13]
+  residual_scale: 0.40
+
+simulation:
+  physics_dt: 0.002
+  control_decimation: 10
+  # 0 = unlimited viewer; close the MuJoCo window to exit.
+  duration: 0.0
+  integrator: implicitfast
+  cone: elliptic
+  impratio: 100.0
+  scan:
+    enabled: true
+    update_hz: 10.0
+    noise_std: 0.03
+    dropout_prob: 0.04
+    stride: 1
+  randomization:
+    enabled: false
+    seed: 42
+
+obstacle:
+  type: course
+  difficulty: 0.0
+  origin: [0.0, 0.0, 0.0]
+  yaw: 0.0
+  params:
+    xml: ../../robocon2027.v2.xml
+    spawn: [0.0, 0.0, 0.45, 0.0]
+    success_distance: 4.0
+
+command: [0.25, 0.0, 0.0]
+max_command: [1.0, 1.0, 1.0]
+
+evaluation:
+  kind: auto
+  stable_steps: 5
+  max_tilt: 0.70
+  min_height: 0.14
+
+output:
+  results_dir: ../results
+  scene_xml: ../generated/course.xml
+  save_failed_trace: true

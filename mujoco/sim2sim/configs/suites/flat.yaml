@@ -1,0 +1,9 @@
+# Baseline: does the checkpoint stand and drive on flat ground at all?
+name: flat_baseline
+duration: 12.0
+repeats: 1
+seed: 42
+command: [0.25, 0.0, 0.0]
+cases:
+  - obstacle: {type: flat, difficulty: 0.0}
+    label: flat

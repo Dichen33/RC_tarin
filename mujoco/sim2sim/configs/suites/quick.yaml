@@ -1,0 +1,19 @@
+# Six-case smoke suite: one representative difficulty per obstacle family.
+name: quick
+duration: 15.0
+repeats: 1
+seed: 42
+command: [0.25, 0.0, 0.0]
+cases:
+  - obstacle: {type: flat, difficulty: 0.0}
+    label: flat
+  - obstacle: {type: rough, difficulty: 0.25}
+    label: rough
+  - obstacle: {type: plum, difficulty: 0.35}
+    label: plum
+  - obstacle: {type: high_wall, difficulty: 0.25}
+    label: wall
+  - obstacle: {type: gap, difficulty: 0.35}
+    label: gap
+  - obstacle: {type: stairs, difficulty: 0.25}
+    label: stairs

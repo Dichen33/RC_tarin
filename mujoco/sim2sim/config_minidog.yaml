@@ -1,0 +1,40 @@
+# MuJoCo validation configuration. Paths are relative to this file unless absolute.
+robot_xml: ../htdw_4438/htdw_4438.xml
+course_xml: ../../../ROBOCON2027.xml
+
+physics_dt: 0.002
+control_decimation: 10
+action_scale: 0.25
+action_clip: 5.0
+actuator_kp: 45.0
+actuator_kv: 1.2
+actuator_effort: 20.0
+
+default_angles: [0.0, 0.4838, -0.9461, 0.0, 0.4838, -0.9461,
+                  0.0, 0.4838, -0.9461, 0.0, 0.4838, -0.9461]
+lin_vel_scale: 1.0
+ang_vel_scale: 0.25
+dof_pos_scale: 1.0
+dof_vel_scale: 0.05
+command_scale: [1.0, 1.0, 1.0]
+
+joint_names: [FL_hip_joint, FL_thigh_joint, FL_calf_joint,
+              FR_hip_joint, FR_thigh_joint, FR_calf_joint,
+              RL_hip_joint, RL_thigh_joint, RL_calf_joint,
+              RR_hip_joint, RR_thigh_joint, RR_calf_joint]
+actuator_suffix: _position
+history_length: 6
+observation_term_dims: [3, 3, 3, 2, 12, 12, 12]
+scan_resolution: 0.08
+# Leave empty to select the training-compatible grid from the checkpoint
+# (216 values -> 1.4 x 0.9 m, 403 values -> 2.4 x 1.0 m).
+scan_size: null
+# The full scan is still fed to the actor. A stride of 2 reduces expensive
+# MuJoCo ray queries on the large ROBOCON mesh; set to 1 for exact scanning.
+scan_stride: 2
+scan_update_interval: 2
+
+command: [0.25, 0.0, 0.0]
+spawn: [0.0, 0.0, 0.262, 0.0]
+duration: 10.0
+max_command: [1.0, 1.0, 1.0]
